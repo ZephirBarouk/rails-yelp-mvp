@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :restaurant, only: [:index, :create, :show, :new] do
+  resources :restaurants, only: [:index, :create, :show, :new] do
     resources :reviews, only: [:new, :create]
     get :reviews, on: :member
   end
